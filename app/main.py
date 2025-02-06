@@ -137,13 +137,13 @@ def get_fun_fact(n: int) -> str:
 def classify_number(number: str = Query(..., description="An integer to classify")):
     """API endpoint to classify a number and return its properties."""
 
-    # Validate that the input is an integer
+    
+    # Manually Validate Input
     if not number.lstrip("-").isdigit():
         return JSONResponse(
             content={"number": number, "error": True},
             status_code=400
         )
-
     number = int(number)  # Convert valid input to an integer
 
     result = {
