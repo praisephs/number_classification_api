@@ -46,6 +46,32 @@ On Windows (Command Prompt):
 Install FastAPI, Uvicorn (ASGI server), and any other required packages:
 
            'pip install fastapi uvicorn'
+
+4. Save Dependencies
+
+To ensure all dependencies can be reinstalled easily, generate a requirements.txt file:
+
+            'pip freeze > requirements.txt'
+
+5. Create FastAPI Application
+
+Inside the app/ directory, create main.py:
+
+![Image](https://github.com/user-attachments/assets/2c63eb46-1a71-4ae6-9a7f-1df5f01fa718)
+
+![Image](https://github.com/user-attachments/assets/8081d759-3190-409e-bcdc-31d9f4c93272)
+
+![Image](https://github.com/user-attachments/assets/5fe5850e-dfe9-48d6-943d-96c4a031dea5)
+
+6. Run Locally Using Uvicorn
+
+To test the API locally before deployment:
+
+            'uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload'
+
+Access the API at: http://localhost:8000            
+            
+           
            
           
 
