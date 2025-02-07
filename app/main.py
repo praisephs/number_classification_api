@@ -84,14 +84,11 @@ def classify_number(number: str = Query(..., description="A number to classify")
     """API endpoint to classify a number and return its properties."""
 
     try:
-        number = float(number)  # Convert input to a float first
-        if number.is_integer():  # Ensure it's an integer
+        number = float(number)  # Convert input to a float
+
+        # If it's actually an integer, store it as an int
+        if number.is_integer():
             number = int(number)
-        else:
-            return JSONResponse(
-                content={"number": number, "error": "Only integers are allowed."},
-                status_code=400
-            )
     except ValueError:
         return JSONResponse(
             content={"number": number, "error": "Invalid number format."},
@@ -100,14 +97,15 @@ def classify_number(number: str = Query(..., description="A number to classify")
 
     result = {
         "number": number,
-        "is_prime": is_prime(number),
-        "is_perfect": is_perfect(number),
-        "properties": get_properties(number),
-        "digit_sum": sum(int(d) for d in str(abs(number))),  # Handle negative numbers
-        "fun_fact": get_fun_fact(number),
+        "is_prime": is_prime(int(number)),  # Prime check only makes sense for integers
+        "is_perfect": is_perfect(int(number)),  # Perfect number check only for integers
+        "properties": get_properties(int(number)),  
+        "digit_sum": sum(int(d) for d in str(abs(int(number)))),  # Handle negative numbers
+        "fun_fact": get_fun_fact(int(number)),  
     }
 
     return JSONResponse(content=result, media_type="application/json")
+
 
 
 @app.get("/")
