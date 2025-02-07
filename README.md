@@ -16,6 +16,16 @@ Uses FastAPI for high-performance API development
 
 Deployed on Azure App Service with GitHub Actions for CI/CD
 
+# Prerequisites
+
+Ensure you have the following installed:
+
+Python 3.8+
+
+pip (Python package manager)
+
+Virtual environment module (venv)
+
 # Project Setup
 
 1. Create a Virtual Environment
@@ -67,9 +77,63 @@ Inside the app/ directory, create main.py:
 
 To test the API locally before deployment:
 
-            'uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload'
+            'uvicorn app.main:app --host 0.0.0.0 --port 8000 --rDeployment on Azure App Service
 
-Access the API at: http://localhost:8000            
+  Access the API at: http://localhost:8000           
+
+7. Push Code to GitHub
+
+Ensure your code is pushed to a GitHub repository:eload'
+   
+
+         'git init
+          git add .
+          git commit -m "Initial commit"'
+          git branch -M main
+          git remote add origin <your-repo-url>
+          git push -u origin main'
+
+8. Create an Azure App Service
+
+Log in to Azure Portal
+
+Navigate to App Services → Create a new App Service
+
+Select Python 3.8+ as the runtime stack
+
+Choose GitHub as the deployment source
+
+Authorize your GitHub account and select the repository
+
+Enable GitHub Actions for continuous deployment
+
+9. Configure Startup Command
+
+Go to Azure App Service → Settings → Configuration → General Settings, then set the startup command:
+
+          'gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --log-level debug'
+
+ 10. Access Deployed API
+
+Once the deployment is complete, access the API at:       
+
+            'https://<your-app-name>.azurewebsites.net/'
+
+ # API Endpoints
+
+  Health Check           
+              
+               'GET /'
+
+  For example to check the health status of your API App, simply open the web browser and enter your URL:
+
+            'https://<your-app-name>.azurewebsites.net/'
+
+  Response:
+
+  ![Image](https://github.com/user-attachments/assets/870c6791-8bb3-48d5-a605-542d1da05bae)
+
+  
             
            
            
