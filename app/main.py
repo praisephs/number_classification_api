@@ -200,7 +200,11 @@ async def classify_number(number: str = Query(..., description="A number to clas
     try:
         number = float(number)  # Convert input to float (handles integers too)
     except ValueError:
-        raise HTTPException(status_code=400, detail="Invalid input. Only numbers are allowed.")
+        return JSONResponse(
+            status_code=400,
+            content={"number": number, "error": "Invalid input. Only numbers are allowed."}
+        )
+        
 
     result = {
         "number": number,
