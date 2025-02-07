@@ -119,9 +119,9 @@ Once the deployment is complete, access the API at:
 
             'https://<your-app-name>.azurewebsites.net/'
 
- # API Endpoints
+ ## API Endpoints
 
-  Health Check           
+  # Health Check           
               
                'GET /'
 
@@ -134,8 +134,32 @@ Once the deployment is complete, access the API at:
   ![Image](https://github.com/user-attachments/assets/870c6791-8bb3-48d5-a605-542d1da05bae)
 
   
+  # Number Classification
+  
+            'https://<your-app-name>.azurewebsites.net/api/classify-number?number=371'
             
-           
+
+  Response: 
+
+    
+  ![Image](https://github.com/user-attachments/assets/5d6cda82-19c2-4b8b-9950-cc090d87ebc7)     
+
+
+  # Error Handling (Invalid Input)
+
+          'https://<your-app-name>.azurewebsites.net/api/classify-number?number=abc'
+
+
+ Response:
+
+ 
+  ![Image](https://github.com/user-attachments/assets/ef701602-916a-41bf-8d36-6183e69b7511)
+
+  # Conclusion
+
+  This FastAPI project demonstrates how to classify numbers and deploy an API using Azure App Service with CI/CD via GitHub Actions
+
+             
            
           
 
