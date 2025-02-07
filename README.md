@@ -8,7 +8,7 @@ You can access the live API URL here: [Classify Number API](https://no-class-app
 
 # Features
 
-Classifies numbers as prime, perfect, Armstrong, or other propert
+Classifies numbers as prime, perfect, Armstrong, or other properties
 
 Provides a structured JSON response with number analysis
 
