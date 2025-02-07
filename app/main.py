@@ -55,18 +55,48 @@ def get_fun_fact(n: int) -> str:
         return f"{n} is a perfect number because the sum of its proper divisors equals {n}."
     return f"{n} is an interesting number with unique properties!"
 
-@app.get("/api/classify-number")
-def classify_number(number: str = Query(..., description="An integer to classify")):
-    """API endpoint to classify a number and return its properties."""
+# @app.get("/api/classify-number")
+# def classify_number(number: str = Query(..., description="An integer to classify")):
+#     """API endpoint to classify a number and return its properties."""
 
     
-    # Manually Validate Input
-    if not number.lstrip("-").isdigit():
+#     # Manually Validate Input
+#     if not number.lstrip("-").isdigit():
+#         return JSONResponse(
+#             content={"number": number, "error": True},
+#             status_code=400
+#         )
+#     number = int(number)  # Convert valid input to an integer
+
+#     result = {
+#         "number": number,
+#         "is_prime": is_prime(number),
+#         "is_perfect": is_perfect(number),
+#         "properties": get_properties(number),
+#         "digit_sum": sum(int(d) for d in str(abs(number))),  # Handle negative numbers
+#         "fun_fact": get_fun_fact(number),
+#     }
+
+#     return JSONResponse(content=result, media_type="application/json")
+
+@app.get("/api/classify-number")
+def classify_number(number: str = Query(..., description="A number to classify")):
+    """API endpoint to classify a number and return its properties."""
+
+    try:
+        number = float(number)  # Convert input to a float first
+        if number.is_integer():  # Ensure it's an integer
+            number = int(number)
+        else:
+            return JSONResponse(
+                content={"number": number, "error": "Only integers are allowed."},
+                status_code=400
+            )
+    except ValueError:
         return JSONResponse(
-            content={"number": number, "error": True},
+            content={"number": number, "error": "Invalid number format."},
             status_code=400
         )
-    number = int(number)  # Convert valid input to an integer
 
     result = {
         "number": number,
@@ -78,6 +108,7 @@ def classify_number(number: str = Query(..., description="An integer to classify
     }
 
     return JSONResponse(content=result, media_type="application/json")
+
 
 @app.get("/")
 def health_check():
